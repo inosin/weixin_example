@@ -13,7 +13,7 @@ end
 
 private
 def check_signature
-  params[:signature] if Digest::SHA1.hexdigest(params.values_at(:timestamp, :nonce).unshift(TOKEN).sort.join) == params[:signature]
+  params[:echostr] if Digest::SHA1.hexdigest(params.values_at(:timestamp, :nonce).unshift(TOKEN).sort.join) == params[:signature]
 rescue
   false
 end
