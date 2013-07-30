@@ -8,12 +8,12 @@ Bundler.require
 TOKEN = 'test_token'
 
 get '/wx' do
-  'success' if check_signature
+  check_signature
 end
 
 private
 def check_signature
-  Digest::SHA1.hexdigest(params.values_at(:timestamp, :nonce).unshift(TOKEN).sort.join) == params[:signature]
+  params[:signature] if Digest::SHA1.hexdigest(params.values_at(:timestamp, :nonce).unshift(TOKEN).sort.join) == params[:signature]
 rescue
   false
 end
