@@ -37,8 +37,8 @@ module Weixin
     def build_reply(type)
       builder = Nokogiri::XML::Builder.new do |xml|
         xml.xml {
-          xml.ToUserName { xml.cdata @to_user_name }
-          xml.FromUserName { xml.cdata @from_user_name }
+          xml.ToUserName { xml.cdata @from_user_name }
+          xml.FromUserName { xml.cdata @to_user_name }
           xml.CreateTime { xml.text Time.now.to_i }
           xml.MsgType { xml.cdata type }
           yield(xml)
